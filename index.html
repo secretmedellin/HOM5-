@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <title>Validate me</title>
+  <script>
+    function validate() {
+      for (var i = 0; i < document.forms[0].elements.length; i++) {
+        var errorarea = document.forms [0].elements [i].name + "_error";
+        //for textarea, text and select-one
+        var msg = document.forms [0].elements [i].name;
+        if (document.forms[0].elements[i].value == "") {
+          document.getElementById(errorarea).innerHTML ="Please enter your" + msg;
+          document.getElementbyId(errorarea).style.color = "#ff0000";
+          document.forms [0].elements[i].focus();
+          return false;
+        } else {
+          document.getElementById(errorarea).innerHTML = "";
+        }
+        //for radio button
+        var radioGrp = false;
+        if (document.forms[0].elements[i].type == "radio") {
+          let radioMsg = document.forms[0].elements[i].name;
+          const numelems= document.getElementsByName(radioMsg).length;
+          var elem = document.getElementsByName(radioMsg);
+          for (var j = 0; j < numelems; j++) {
+            if (elem[j].checked == true) {
+              radioGrp = true;
+
+            }
+        }
+        if (radioGrp == false) {
+          alert("Please eneter your" + radioMSg);
+          document.getElementById(errorarea).innerHTML =
+          "Please eneter your" + radioMSg;
+          document.getElementbyId(errorarea).style.color = "#ff0000";
+          return false;
+        } else {
+          document.getElementById(errorarea).innerHTML = "";
+        }
+      }
+      //for checkboxes
+      var checkGrp = false;
+      if (document.forms[0].elements[i].type == "checkbox") {
+        let checkMsg = document.forms[0].elements[i].name;
+        const numelems= document.getElementsByName(checkMsg).length;
+        var elem = document.getElementsByName(checkMsg);
+
+        for (var j = 0; j < numelems; j ++) {
+          if (elem[j].checked == true) {
+            checkGrp = true;
+        }
+      }
+      if (checkGrp == false) {
+        alert("Please eneter your" + checkMsg);
+        document.getElementById(errorarea).innerHTML =
+        "Please eneter your" + checkMsg;
+        document.getElementById(errorarea).style.color = "#ff0000";
+        return false;
+        } else {
+          document.getElementById(errorarea).innerHTML = "";
+        }
+      }
+    }
+  }
+  </script>
+  </head>
+  <body> 
+    at least one piece of data has to come in from every input type. 
+    <form action="" method="get" onsubmit="return validateMe();">
+    <br/> 
+  Name:<input
+type="text"
+id="test"
+name="fullname" 
+placeholder="Enter Full Name"
+/><br />
+Year in College:<br /> 
+First Year<input type="radio" name="year" value="First Year" /> Second
+Year<input type="radio" name="year" value="Second Year" /> Third
+Year<input type="radio" name="year" value="Third Year" /><br />
+Hobbies<br />
+Baseball
+<input type="checkbox" name="hobbies[]" value="baseball" /> Football
+<input type="checkbox" name="hobbies[]" value="football" /> Hockey
+<input type="checkbox" name="hobbies[]" value="hockey" /><br /> Favorite Show
+<select name "show">
+  <option value="">Choose Below</option>
+  <option value="The Simpsons">The Simpsons</option>
+  <option value="Family Guy">Family Guy</option>
+  <option value="Garfield">Garfield</option></select><br/> Comments<br /> 
+  <textarea cols="50" rows="6" name="comments"></textarea><br />
+  <input type="submit" name="Submit" value="enter me" /></form>
+</select> </form>
+  </body>
+</html>
